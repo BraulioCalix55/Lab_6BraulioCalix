@@ -42,7 +42,7 @@ public class secuestro extends delitos{
 
     @Override
     public String toString() {
-        return "secuestro{" + "dias=" + dias + ", edad_vic=" + edad_vic + '}';
+        return "secuestro: " + super.getDescri()+" " +super.getTipo()+" "+super.getCulpable()+" "+dias+ " "+edad_vic ;
     }
     
 }

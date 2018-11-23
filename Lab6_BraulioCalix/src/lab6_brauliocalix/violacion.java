@@ -30,7 +30,8 @@ public class violacion extends delitos{
 
     @Override
     public String toString() {
-        return "violacion{" + "edad_vic=" + edad_vic + '}';
+        return "violacion "+super.getDescri()+" " +super.getTipo()+" "+super.getCulpable()+" "+edad_vic ;
+        //return "secuestro: " + super.getDescri()+" " +super.getTipo()+" "+super.getCulpable()+
     }
     
 }

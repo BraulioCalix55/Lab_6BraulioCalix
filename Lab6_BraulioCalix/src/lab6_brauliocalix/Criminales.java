@@ -12,14 +12,24 @@ import java.util.ArrayList;
  * @author User
  */
 public class Criminales {
+
     private String nombre;
     private int edad;
     private String ID;
     private String N_celda;
     private String años;
-    private ArrayList <delitos> delitos;
+    private ArrayList<delitos> delitos;
 
     public Criminales() {
+    
+    }
+
+    public Criminales(String nombre, int edad, String ID, String N_celda, String años) {
+        this.nombre = nombre;
+        this.edad = edad;
+        this.ID = ID;
+        this.N_celda = N_celda;
+        this.años = años;
     }
 
     public Criminales(String nombre, int edad, String ID, String N_celda, String años, ArrayList<delitos> delitos) {
@@ -81,8 +91,7 @@ public class Criminales {
 
     @Override
     public String toString() {
-        return "Criminales{" + "nombre=" + nombre + ", edad=" + edad + ", ID=" + ID + ", N_celda=" + N_celda + ", anios=" + años + ", delitos=" + delitos + '}';
+        return nombre +" sentencia: "+ años+" años" ;
     }
 
-    
 }

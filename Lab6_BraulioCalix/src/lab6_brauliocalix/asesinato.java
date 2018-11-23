@@ -9,7 +9,8 @@ package lab6_brauliocalix;
  *
  * @author User
  */
-public class asesinato extends delitos{
+public class asesinato extends delitos {
+
     private String arma;
     private String n_victima;
 
@@ -21,8 +22,6 @@ public class asesinato extends delitos{
         this.arma = arma;
         this.n_victima = n_victima;
     }
-    
-   
 
     public String getArma() {
         return arma;
@@ -42,7 +41,7 @@ public class asesinato extends delitos{
 
     @Override
     public String toString() {
-        return "asesinato{" + "arma=" + arma + ", n_victima=" + n_victima + '}';
+        return "asesinato: " + super.getDescri() + " " + super.getTipo() + " " + super.getCulpable() + " " + arma + " " + n_victima;
     }
-    
+
 }

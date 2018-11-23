@@ -40,7 +40,8 @@ public class robo extends delitos{
 
     @Override
     public String toString() {
-        return "robo{" + "nombre_objeto=" + nombre_objeto + ", valor=" + valor + '}';
+        return "robo "+ super.getDescri()+" " +super.getTipo()+" "+super.getCulpable()+" "+nombre_objeto+" "+ valor ;
+        //super.getDescri()+" " +super.getTipo()+" "+super.getCulpable()+
     }
     
 }
