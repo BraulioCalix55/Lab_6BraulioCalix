@@ -5,17 +5,17 @@
  */
 package lab6_brauliocalix;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author User
  */
-public class Lab6_BraulioCalix {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
-    
+public class Criminales {
+    private String nombre;
+    private int edad;
+    private String ID;
+    private String N_celda;
+    private String años;
+    private ArrayList <delitos> delitos;
 }
