@@ -78,33 +78,37 @@ public class AdminCriminales {
                         bw.write(listaCri.get(i).getDelitos().get(i).getCulpable() + ";");
                         bw.write(((asesinato) listaCri.get(i).getDelitos().get(i)).getArma() + ";");
                         bw.write(((asesinato) listaCri.get(i).getDelitos().get(i)).getN_victima() + ";");
-                    }if (listaCri.get(i).getDelitos().get(i) instanceof violacion) {
+                    }
+                    if (listaCri.get(i).getDelitos().get(i) instanceof violacion) {
                         bw.write("violacion;");
                         bw.write(listaCri.get(i).getDelitos().get(i).getDescri() + ";");
                         bw.write(listaCri.get(i).getDelitos().get(i).getTipo() + ";");
                         bw.write(listaCri.get(i).getDelitos().get(i).getCulpable() + ";");
                         bw.write(((violacion) listaCri.get(i).getDelitos().get(i)).getEdad_vic() + ";");
-                    }if (listaCri.get(i).getDelitos().get(i) instanceof robo) {
+                    }
+                    if (listaCri.get(i).getDelitos().get(i) instanceof robo) {
                         bw.write("robo;");
                         bw.write(listaCri.get(i).getDelitos().get(i).getDescri() + ";");
                         bw.write(listaCri.get(i).getDelitos().get(i).getTipo() + ";");
                         bw.write(listaCri.get(i).getDelitos().get(i).getCulpable() + ";");
-                        bw.write(((robo) listaCri.get(i).getDelitos().get(i)).getNombre_objeto()+ ";");
+                        bw.write(((robo) listaCri.get(i).getDelitos().get(i)).getNombre_objeto() + ";");
                         bw.write(((robo) listaCri.get(i).getDelitos().get(i)).getValor() + ";");
-                    }if (listaCri.get(i).getDelitos().get(i) instanceof trafico) {
+                    }
+                    if (listaCri.get(i).getDelitos().get(i) instanceof trafico) {
                         bw.write("trafico de drogas;");
                         bw.write(listaCri.get(i).getDelitos().get(i).getDescri() + ";");
                         bw.write(listaCri.get(i).getDelitos().get(i).getTipo() + ";");
                         bw.write(listaCri.get(i).getDelitos().get(i).getCulpable() + ";");
-                        bw.write(((trafico) listaCri.get(i).getDelitos().get(i)).getDroga()+ ";");
-                        bw.write(((trafico) listaCri.get(i).getDelitos().get(i)).getPeso()+ ";");
-                    }if (listaCri.get(i).getDelitos().get(i) instanceof trafico) {
-                        bw.write("secuestro ;");
+                        bw.write(((trafico) listaCri.get(i).getDelitos().get(i)).getDroga() + ";");
+                        bw.write(((trafico) listaCri.get(i).getDelitos().get(i)).getPeso() + ";");
+                    }
+                    if (listaCri.get(i).getDelitos().get(i) instanceof trafico) {
+                        bw.write("secuestro;");
                         bw.write(listaCri.get(i).getDelitos().get(i).getDescri() + ";");
                         bw.write(listaCri.get(i).getDelitos().get(i).getTipo() + ";");
                         bw.write(listaCri.get(i).getDelitos().get(i).getCulpable() + ";");
-                        bw.write(((secuestro) listaCri.get(i).getDelitos().get(i)).getDias()+ ";");
-                        bw.write(((secuestro) listaCri.get(i).getDelitos().get(i)).getEdad_vic()+ ";");
+                        bw.write(((secuestro) listaCri.get(i).getDelitos().get(i)).getDias() + ";");
+                        bw.write(((secuestro) listaCri.get(i).getDelitos().get(i)).getEdad_vic() + ";");
                     }
                 }
                 bw.write("/");
@@ -127,7 +131,6 @@ public class AdminCriminales {
                     int c, e;
                     String n;
                     boolean m;
-
                     c = sc.nextInt();
                     n = sc.next();
                     e = sc.nextInt();
@@ -138,5 +141,60 @@ public class AdminCriminales {
                 sc.close();
             }
         }
+    }
+
+    public ArrayList  cargardelitos() {
+        ArrayList temp= new ArrayList();
+        Scanner sc = null;
+        Scanner sc2=null;
+        listaCri = new ArrayList();
+        if (archivo.exists()) {
+            try {
+                sc = new Scanner(archivo);
+                sc2= new Scanner(archivo);
+                sc.useDelimiter("/");
+                sc2=sc.useDelimiter(";");
+                while (sc.hasNext()) {                    
+                    while (sc2.hasNext()) {
+                        String crimen=sc2.next();
+                        String desc=sc2.next();
+                        String nivel=sc2.next();
+                        String culpa=sc2.next();
+                        
+                        if (crimen.equals("asesinato")) {
+                            String arma=sc2.next();
+                            String vict=sc2.next();
+                            temp.add(new asesinato(arma, vict, desc, nivel, culpa));
+                            //(String arma, String n_victima, String descri, String tipo, String culpable) 
+                        }if (crimen.equals("violacion")) {
+                            String edadvi=sc2.next();
+                            //String edad_vic, String descri, String tipo, String culpable
+                            temp.add(new violacion(edadvi, desc, nivel, culpa));
+                        }if (crimen.equals("robo")) {
+                            String objeto=sc2.next();
+                            String precio=sc2.next();
+                            //String nombre_objeto, String valor, String descri, String tipo, String culpable
+                            temp.add(new robo(objeto, precio, desc, nivel, culpa));
+                        }if (crimen.equals("trafico de drogas")) {
+                            String droga=sc2.next();
+                            String peso=sc2.next();
+                            //String droga, String peso, String descri, String tipo, String culpable
+                            temp.add(new trafico(droga, peso, desc, nivel, culpa));
+                        }if (crimen.equals("secuestro")) {
+                            String dias=sc2.next();
+                            String edad=sc2.next();
+                            //String dias, String edad_vic, String descri, String tipo, String culpable
+                            temp.add(new secuestro(dias, edad, desc, nivel, culpa));
+                        }
+                        
+                    }
+                }
+            } catch (Exception e) {
+            } finally {
+                sc.close();
+                sc2.close();
+            }
+        }
+        return temp;
     }
 }

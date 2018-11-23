@@ -12,7 +12,6 @@ import java.util.ArrayList;
  * @author User
  */
 public class Criminales {
-    
     private String nombre;
     private int edad;
     private String ID;
@@ -82,7 +81,8 @@ public class Criminales {
 
     @Override
     public String toString() {
-        return "Criminales{" + "nombre=" + nombre + ", edad=" + edad + ", ID=" + ID + ", N_celda=" + N_celda + ", a\u00f1os=" + años + ", delitos=" + delitos + '}';
+        return "Criminales{" + "nombre=" + nombre + ", edad=" + edad + ", ID=" + ID + ", N_celda=" + N_celda + ", anios=" + años + ", delitos=" + delitos + '}';
     }
+
     
 }

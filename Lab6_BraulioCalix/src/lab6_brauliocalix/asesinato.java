@@ -21,6 +21,8 @@ public class asesinato extends delitos{
         this.arma = arma;
         this.n_victima = n_victima;
     }
+    
+   
 
     public String getArma() {
         return arma;
