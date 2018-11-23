@@ -138,7 +138,7 @@ public class AdminCriminales {
                     String celda = sc.next();
                     String anios = sc.next();
                     ArrayList temp = new ArrayList();
-                    temp.addAll(cargardelitos("./Delitos"));
+                    temp.addAll(cargardelitos("./Delitos.txt"));
                     listaCri.add(new Criminales(nombre, edad, id, celda, anios, temp));
                 }
             } catch (Exception e) {
