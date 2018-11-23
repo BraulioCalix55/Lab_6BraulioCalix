@@ -8,6 +8,7 @@ package lab6_brauliocalix;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import java.util.Scanner;
 
 /**
  *
@@ -21,6 +22,7 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
     }
+    static Scanner lea = new Scanner(System.in);
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -46,6 +48,17 @@ public class Principal extends javax.swing.JFrame {
         menu_delito = new javax.swing.JPopupMenu();
         modidelito = new javax.swing.JMenuItem();
         elimideli = new javax.swing.JMenuItem();
+        creardelito = new javax.swing.JDialog();
+        jLabel11 = new javax.swing.JLabel();
+        deli_desc = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        deli_nivel = new javax.swing.JComboBox<>();
+        jLabel14 = new javax.swing.JLabel();
+        deli_culp = new javax.swing.JComboBox<>();
+        jLabel15 = new javax.swing.JLabel();
+        deli_tipo = new javax.swing.JComboBox<>();
+        creadelitos = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         lista_delitos = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -154,6 +167,87 @@ public class Principal extends javax.swing.JFrame {
         elimideli.setText("eliminar delito");
         menu_delito.add(elimideli);
 
+        jLabel11.setText("crear delitos");
+
+        jLabel12.setText("descripcion");
+
+        jLabel13.setText("tipo");
+
+        deli_nivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "leve", "grave", "moderada" }));
+
+        jLabel14.setText("culpable");
+
+        deli_culp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "si", "no" }));
+
+        jLabel15.setText("delito");
+
+        deli_tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "asesinato", "violacion", "robo", "trafico", "secuestro" }));
+
+        creadelitos.setText("crear delito");
+        creadelitos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                creadelitosMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout creardelitoLayout = new javax.swing.GroupLayout(creardelito.getContentPane());
+        creardelito.getContentPane().setLayout(creardelitoLayout);
+        creardelitoLayout.setHorizontalGroup(
+            creardelitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, creardelitoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel11)
+                .addGap(221, 221, 221))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, creardelitoLayout.createSequentialGroup()
+                .addGroup(creardelitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(creardelitoLayout.createSequentialGroup()
+                        .addGap(99, 99, 99)
+                        .addGroup(creardelitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(deli_desc, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(deli_nivel, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(deli_culp, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(creardelitoLayout.createSequentialGroup()
+                        .addGap(156, 156, 156)
+                        .addComponent(deli_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
+                .addGroup(creardelitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel12))
+                .addGap(82, 82, 82))
+            .addGroup(creardelitoLayout.createSequentialGroup()
+                .addGap(208, 208, 208)
+                .addComponent(creadelitos)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        creardelitoLayout.setVerticalGroup(
+            creardelitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(creardelitoLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(creardelitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel12)
+                    .addGroup(creardelitoLayout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addGap(30, 30, 30)
+                        .addComponent(deli_desc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(33, 33, 33)
+                .addGroup(creardelitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(deli_nivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
+                .addGroup(creardelitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(deli_culp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(55, 55, 55)
+                .addGroup(creardelitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(deli_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addComponent(creadelitos)
+                .addGap(33, 33, 33))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -185,6 +279,11 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().add(creacri, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, -1));
 
         expe.setText("Expediente");
+        expe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                expeMouseClicked(evt);
+            }
+        });
         getContentPane().add(expe, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 110, -1));
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
@@ -288,6 +387,70 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_listardelitosMouseClicked
 
+    private void expeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_expeMouseClicked
+        ad.cargarCriminales();
+        int pos;
+        if (lista_crimi.getSelectedIndex() >= 0) {
+            pos = lista_crimi.getSelectedIndex();
+            ad.expediente((ad.getListaCri().get(pos)));
+            JOptionPane.showMessageDialog(this, "revise el txt de expediente");
+        } else {
+            JOptionPane.showMessageDialog(this, "no ha seleccionado ningun criminal de la lista de criminales");
+        }
+    }//GEN-LAST:event_expeMouseClicked
+
+    private void creadelitosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_creadelitosMouseClicked
+        // TODO add your handling code here:
+        String desc = deli_desc.getText();
+        String tipo = (String) deli_nivel.getSelectedItem();
+        String culpa = (String) deli_culp.getSelectedItem();
+        String delito = (String) deli_tipo.getSelectedItem();
+        int posicion = lista_crimi.getSelectedIndex();
+        JOptionPane.showMessageDialog(creardelito, "por motivo de confidencialidad debe llenar los demas datos en la consola");
+        if (delito.equals("asesinato")) {
+            System.out.println("ingrese el arma: ");
+            String arma = lea.next();
+            System.out.println("ingrese la cantidad de victimas");
+            String vict = lea.next();
+            ad.cargarCriminales();
+            ad.getListaCri().get(posicion).getDelitos().add(new asesinato(arma, vict, desc, tipo, culpa));
+        }
+        if (delito.equals("violacion")) {
+            System.out.println("ingrese la edad de la victima");
+            String edadvic = lea.next();
+            ad.cargarCriminales();
+            ad.getListaCri().get(posicion).getDelitos().add(new violacion(edadvic, desc, tipo, culpa));
+        }
+        if (delito.equals("robo")) {
+            System.out.println("ingrese el producto que se robo");
+            String cosa = lea.next();
+            System.out.println("ingrese el vallor del producto robado");
+            String precio = lea.next();
+             ad.cargarCriminales();
+             //(String nombre_objeto, String valor, String descri, String tipo, String culpable) {
+            ad.getListaCri().get(posicion).getDelitos().add(new robo(cosa, precio, desc, tipo, culpa));
+        }
+        if (delito.equals("trafico")) {
+            System.out.println("ingrese la droga que traficaba");
+            String droga = lea.next();
+            System.out.println("ingrese el peso de la droga");
+            String peso = lea.next();
+             ad.cargarCriminales();
+             //(String nombre_objeto, String valor, String descri, String tipo, String culpable) {
+            ad.getListaCri().get(posicion).getDelitos().add(new trafico(droga, peso, desc, tipo, culpa));
+        }
+        if (delito.equals("secuestro")) {
+            System.out.println("ingrese los dias que duro es secuestro");
+            String dias = lea.next();
+            System.out.println("ingrese la edad de la victima");
+            String violado = lea.next();
+             ad.cargarCriminales();
+             //(String nombre_objeto, String valor, String descri, String tipo, String culpable) {
+            ad.getListaCri().get(posicion).getDelitos().add(new secuestro(dias, desc, desc, tipo, culpa));
+        }
+        creardelito.dispose();
+    }//GEN-LAST:event_creadelitosMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -329,15 +492,26 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton actualizar_lista;
     private javax.swing.JMenuItem agrega_delito;
     private javax.swing.JButton creacri;
+    private javax.swing.JButton creadelitos;
+    private javax.swing.JDialog creardelito;
     private javax.swing.JTextField cri_celda;
     private javax.swing.JSpinner cri_edad;
     private javax.swing.JTextField cri_id;
     private javax.swing.JTextField cri_nom;
+    private javax.swing.JComboBox<String> deli_culp;
+    private javax.swing.JTextField deli_desc;
+    private javax.swing.JComboBox<String> deli_nivel;
+    private javax.swing.JComboBox<String> deli_tipo;
     private javax.swing.JMenuItem elimideli;
     private javax.swing.JMenuItem eliminar;
     private javax.swing.JButton expe;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
