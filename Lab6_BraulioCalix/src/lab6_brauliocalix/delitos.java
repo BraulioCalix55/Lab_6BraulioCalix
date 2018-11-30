@@ -50,7 +50,7 @@ public class delitos {
 
     @Override
     public String toString() {
-        return "delitos{" + "descri=" + descri + ", tipo=" + tipo + ", culpable=" + culpable + '}';
+        return "culpable=" + culpable + '}';
     }
 
 }

@@ -5,10 +5,14 @@
  */
 package lab6_brauliocalix;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -151,14 +155,19 @@ public class Principal extends javax.swing.JFrame {
         menu_criminal.add(eliminar);
 
         listardelitos.setText("listar delitos");
-        listardelitos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                listardelitosMouseClicked(evt);
+        listardelitos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listardelitosActionPerformed(evt);
             }
         });
         menu_criminal.add(listardelitos);
 
         agrega_delito.setText("agregar delito");
+        agrega_delito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agrega_delitoActionPerformed(evt);
+            }
+        });
         menu_criminal.add(agrega_delito);
 
         modidelito.setText("modificar");
@@ -251,6 +260,7 @@ public class Principal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        lista_delitos.setModel(new DefaultListModel());
         lista_delitos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lista_delitosMouseClicked(evt);
@@ -326,21 +336,30 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_creacriMouseClicked
 
     private void CrearCrimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CrearCrimMouseClicked
+        AdminCriminales ad = new AdminCriminales("./Criminales.txt");
+        ad.cargarCriminales();
         try {
             String celda = cri_celda.getText();
             String nombre = cri_nom.getText();
             String id = cri_id.getText();
             int edad = (int) cri_edad.getValue();
             String anios = sentencia.getValue().toString();
-            crimi.add(new Criminales(nombre, edad, id, celda, anios));
+            //crimi.add(new Criminales(nombre, edad, id, celda, anios));
+            ad.setArchivo(new File("./Criminales.txt"));
+            ad.setCriminal(new Criminales(nombre, edad, id, celda, anios));
+            //ad.getListaCri().get(0).getDelitos().add(new asesinato());
+            System.out.println("escri");
+            System.out.println("tamano"+ad.getListaCri().size());
+            ad.escribircriminales();
+            System.out.println("be");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(CreaCrimi, "no se pudo crear el criminal");
             e.printStackTrace();
         }
+        ad.cargarCriminales();
         DefaultListModel modelo = (DefaultListModel) lista_crimi.getModel();
-        for (int i = 0; i < crimi.size(); i++) {
-
-            modelo.addElement(crimi.get(i).toString());
+        for (int i = 0; i < ad.getListaCri().size(); i++) {
+            modelo.addElement(ad.getListaCri().get(i).toString());
         }
 
         cri_celda.setText("");
@@ -370,29 +389,24 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_lista_delitosMouseClicked
 
     private void actualizar_listaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_actualizar_listaMouseClicked
-        ruta = "./Criminales.txt";
+        AdminCriminales ad = new AdminCriminales("./Criminales.txt");
         ad.cargarCriminales();
+        for (int i = 0; i < ad.getListaCri().size(); i++) {
+            System.out.println(ad.getListaCri().get(i));
+        }
         DefaultListModel modelo = (DefaultListModel) lista_crimi.getModel();
         for (int i = 0; i < ad.getListaCri().size(); i++) {
             modelo.addElement(ad.getListaCri().get(i).toString());
         }
     }//GEN-LAST:event_actualizar_listaMouseClicked
 
-    private void listardelitosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listardelitosMouseClicked
-        lista_crimi.getSelectedIndex();
-        ad.cargarCriminales();
-        DefaultListModel modelo = (DefaultListModel) lista_delitos.getModel();
-        for (int i = 0; i < ad.getListaCri().size(); i++) {
-            modelo.addElement(ad.getListaCri().get(i).toString());
-        }
-    }//GEN-LAST:event_listardelitosMouseClicked
-
     private void expeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_expeMouseClicked
+        AdminCriminales ad = new AdminCriminales("./Criminales.txt");
         ad.cargarCriminales();
         int pos;
         if (lista_crimi.getSelectedIndex() >= 0) {
             pos = lista_crimi.getSelectedIndex();
-            ad.expediente((ad.getListaCri().get(pos)));
+            ad.expediente(ad.getListaCri().get(pos));
             JOptionPane.showMessageDialog(this, "revise el txt de expediente");
         } else {
             JOptionPane.showMessageDialog(this, "no ha seleccionado ningun criminal de la lista de criminales");
@@ -401,11 +415,17 @@ public class Principal extends javax.swing.JFrame {
 
     private void creadelitosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_creadelitosMouseClicked
         // TODO add your handling code here:
+        AdminCriminales ad = new AdminCriminales("./Criminales.txt");
+        ad.cargarCriminales();
+
         String desc = deli_desc.getText();
         String tipo = (String) deli_nivel.getSelectedItem();
         String culpa = (String) deli_culp.getSelectedItem();
         String delito = (String) deli_tipo.getSelectedItem();
         int posicion = lista_crimi.getSelectedIndex();
+        System.out.println(posicion);
+        System.out.println(posicion);
+        System.out.println("");
         JOptionPane.showMessageDialog(creardelito, "por motivo de confidencialidad debe llenar los demas datos en la consola");
         if (delito.equals("asesinato")) {
             System.out.println("ingrese el arma: ");
@@ -426,8 +446,8 @@ public class Principal extends javax.swing.JFrame {
             String cosa = lea.next();
             System.out.println("ingrese el vallor del producto robado");
             String precio = lea.next();
-             ad.cargarCriminales();
-             //(String nombre_objeto, String valor, String descri, String tipo, String culpable) {
+            ad.cargarCriminales();
+            //(String nombre_objeto, String valor, String descri, String tipo, String culpable) {
             ad.getListaCri().get(posicion).getDelitos().add(new robo(cosa, precio, desc, tipo, culpa));
         }
         if (delito.equals("trafico")) {
@@ -435,8 +455,8 @@ public class Principal extends javax.swing.JFrame {
             String droga = lea.next();
             System.out.println("ingrese el peso de la droga");
             String peso = lea.next();
-             ad.cargarCriminales();
-             //(String nombre_objeto, String valor, String descri, String tipo, String culpable) {
+            ad.cargarCriminales();
+            //(String nombre_objeto, String valor, String descri, String tipo, String culpable) {
             ad.getListaCri().get(posicion).getDelitos().add(new trafico(droga, peso, desc, tipo, culpa));
         }
         if (delito.equals("secuestro")) {
@@ -444,12 +464,35 @@ public class Principal extends javax.swing.JFrame {
             String dias = lea.next();
             System.out.println("ingrese la edad de la victima");
             String violado = lea.next();
-             ad.cargarCriminales();
-             //(String nombre_objeto, String valor, String descri, String tipo, String culpable) {
+            ad.cargarCriminales();
+            //(String nombre_objeto, String valor, String descri, String tipo, String culpable) {
             ad.getListaCri().get(posicion).getDelitos().add(new secuestro(dias, desc, desc, tipo, culpa));
         }
+        try {
+            ad.escribircriminales();
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        JOptionPane.showMessageDialog(creardelito, "ya se agrego el delito");
         creardelito.dispose();
     }//GEN-LAST:event_creadelitosMouseClicked
+
+    private void agrega_delitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agrega_delitoActionPerformed
+        // TODO add your handling code here:
+        creardelito.setModal(true);
+        creardelito.pack();
+        creardelito.setVisible(true);
+    }//GEN-LAST:event_agrega_delitoActionPerformed
+
+    private void listardelitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listardelitosActionPerformed
+        AdminCriminales ad = new AdminCriminales("./Criminales.txt");
+        int pos = lista_crimi.getSelectedIndex();
+        ad.cargarCriminales();
+        DefaultListModel modelo = (DefaultListModel) lista_delitos.getModel();
+        for (int i = 0; i < ad.getListaCri().get(pos).getDelitos().size(); i++) {
+            modelo.addElement(ad.getListaCri().get(pos).getDelitos().get(i).toString());
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_listardelitosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -532,6 +575,5 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JSpinner sentencia;
     // End of variables declaration//GEN-END:variables
 ArrayList<Criminales> crimi = new ArrayList();
-    String ruta;
-    AdminCriminales ad = new AdminCriminales(ruta);
+
 }

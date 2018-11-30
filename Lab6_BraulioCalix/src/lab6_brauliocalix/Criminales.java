@@ -91,7 +91,7 @@ public class Criminales {
 
     @Override
     public String toString() {
-        return nombre +" sentencia: "+ años+" años" ;
+        return nombre +" sentencia: "+ años+" años"+delitos ;
     }
 
 }
