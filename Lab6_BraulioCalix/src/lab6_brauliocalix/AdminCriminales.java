@@ -127,6 +127,7 @@ public class AdminCriminales {
                 }
 
             }
+            bw.write("/");
             bw.flush();
         } catch (Exception e) {
         }
@@ -193,18 +194,20 @@ public class AdminCriminales {
         ArrayList temp = new ArrayList();
 
         Scanner sc2 = null;
+        Scanner sc3=null;
         System.out.println("delitos");
         listaCri = new ArrayList();
         archivo = new File("./Delitos.txt");
         if (archivo.exists()) {
             try {
 
-                sc2 = new Scanner(archivo);
-                sc2 = sc2.useDelimiter(";");
+                sc3 = new Scanner(archivo);
+                sc3 = sc3.useDelimiter("/");
+                sc2= sc3.useDelimiter(";");
 
-                while (sc2.hasNext()) {
-
-                    String crimen = sc2.next();
+                while (sc3.hasNext()) {
+                    while (sc2.hasNext()) {
+                       String crimen = sc2.next();
                     System.out.println("crimen" + crimen);
                     String desc = sc2.next();
                     String nivel = sc2.next();
@@ -238,7 +241,9 @@ public class AdminCriminales {
                         String edad = sc2.next();
                         //String dias, String edad_vic, String descri, String tipo, String culpable
                         temp.add(new secuestro(dias, edad, desc, nivel, culpa));
+                    } 
                     }
+                    
 
                 }
             } catch (Exception e) {

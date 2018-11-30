@@ -1,6 +1,6 @@
 Nombre: juan
 edad: 19
-numero de ID: id
-numero de celda celda
-delitos: 0)asesinato: amigo leve si ad ad
-años por cumplir: 3
+numero de ID: asd
+numero de celda ads
+delitos: 0)asesinato: puto leve si posa dsa
+años por cumplir: 1
